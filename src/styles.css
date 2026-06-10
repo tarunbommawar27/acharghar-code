@@ -1,0 +1,182 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --font-serif: "Playfair Display", "Cormorant Garamond", Georgia, serif;
+  --font-sans: "Plus Jakarta Sans", "Inter", system-ui, sans-serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-spice: var(--spice);
+  --color-mustard: var(--mustard);
+  --color-turmeric: var(--turmeric);
+  --color-leaf: var(--leaf);
+  --color-cream: var(--cream);
+  --color-clay: var(--clay);
+}
+
+:root {
+  --radius: 1rem;
+  /* Warm cream */
+  --background: oklch(0.972 0.018 85);
+  --cream: oklch(0.972 0.018 85);
+  /* Dark warm brown */
+  --foreground: oklch(0.27 0.04 40);
+  --card: oklch(0.985 0.012 85);
+  --card-foreground: oklch(0.27 0.04 40);
+  --popover: oklch(0.985 0.012 85);
+  --popover-foreground: oklch(0.27 0.04 40);
+  /* Deep maroon pickle red */
+  --primary: oklch(0.42 0.16 28);
+  --primary-foreground: oklch(0.98 0.015 85);
+  --spice: oklch(0.42 0.16 28);
+  /* Mustard */
+  --secondary: oklch(0.78 0.15 80);
+  --secondary-foreground: oklch(0.25 0.05 40);
+  --mustard: oklch(0.78 0.15 80);
+  /* Turmeric gold */
+  --turmeric: oklch(0.72 0.17 70);
+  --leaf: oklch(0.55 0.11 145);
+  --clay: oklch(0.55 0.12 40);
+  --muted: oklch(0.93 0.02 80);
+  --muted-foreground: oklch(0.45 0.04 50);
+  --accent: oklch(0.88 0.08 75);
+  --accent-foreground: oklch(0.27 0.05 40);
+  --destructive: oklch(0.55 0.22 27);
+  --destructive-foreground: oklch(0.98 0.01 85);
+  --border: oklch(0.88 0.025 75);
+  --input: oklch(0.88 0.025 75);
+  --ring: oklch(0.42 0.16 28);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv01";
+  }
+  h1, h2, h3, h4, h5 {
+    font-family: var(--font-serif);
+    letter-spacing: -0.01em;
+  }
+}
+
+@utility container-x {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+  max-width: 80rem;
+}
+
+@utility btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: var(--color-primary);
+  color: var(--color-primary-foreground);
+  padding: 0.85rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.25s ease;
+  box-shadow: 0 10px 30px -12px color-mix(in oklab, var(--color-primary) 60%, transparent);
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 18px 40px -12px color-mix(in oklab, var(--color-primary) 70%, transparent);
+  }
+}
+
+@utility btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: var(--color-foreground);
+  padding: 0.85rem 1.5rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: 1.5px solid color-mix(in oklab, var(--color-foreground) 25%, transparent);
+  transition: all 0.25s ease;
+  &:hover {
+    background: var(--color-foreground);
+    color: var(--color-background);
+  }
+}
+
+@utility card-soft {
+  background: var(--color-card);
+  border-radius: 1.5rem;
+  border: 1px solid var(--color-border);
+  box-shadow: 0 1px 2px rgba(60, 30, 10, 0.04), 0 12px 32px -16px rgba(60, 30, 10, 0.12);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+@utility lift-on-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 24px 48px -20px rgba(60, 30, 10, 0.25);
+  }
+}
+
+@utility pattern-bg {
+  background-image: radial-gradient(circle at 1px 1px, color-mix(in oklab, var(--color-primary) 18%, transparent) 1px, transparent 0);
+  background-size: 22px 22px;
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-14px) rotate(3deg); }
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes ping-soft {
+  0% { transform: scale(1); opacity: 1; }
+  80%, 100% { transform: scale(1.8); opacity: 0; }
+}
+
+.animate-float { animation: float-slow 6s ease-in-out infinite; }
+.animate-fade-up { animation: fade-up 0.7s ease-out both; }
+.animate-fade-in { animation: fade-in 0.6s ease-out both; }
+.animate-ping-soft { animation: ping-soft 1s ease-out; }
